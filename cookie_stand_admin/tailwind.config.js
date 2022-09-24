@@ -8,6 +8,7 @@ module.exports = {
     colors: {
       'darkgreen': '#15b981',
       'limegreen': '#6fe6b7',
+      'teal': '#9af4c5',
       'black': '#000000' ,
       'white': '#FFFFFF',
     },
