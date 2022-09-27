@@ -8,7 +8,7 @@ import Footer from "../components/footer.js"
 
 export default function Home() {
 
-  const [initState, StateFunction] = useState([]);
+  const [salesData, setsalesData] = useState([]);
 
   function eventHandler(event) {
     event.preventDefault();
@@ -22,10 +22,9 @@ export default function Home() {
       maxCustomers: max,
       avgCookies: avg,
       hourlySales: SalesPerHour(min,max,avg),
+      totalSales: totalSales(),
     };
-    const stringJson = JSON.stringify(data);
-    StateFunction([...initState,stringJson]);
-    console.log(initState)
+    setsalesData([...salesData,data]);
   }
 
   function SalesPerHour(min,max,avg) {
@@ -35,6 +34,10 @@ export default function Home() {
       randomSales.push(randomNumber);
     }
     return randomSales
+  };
+
+  function totalSales() {
+
   };
 
   return (
@@ -47,9 +50,9 @@ export default function Home() {
         <Form eventHandler={eventHandler} />
         <div className="flex flex-col items-center m-8 text-2xl">
           <h1>No Cookie Stands Available</h1>
-          <p className="flex pt-10">{initState}</p>
+          <p className="flex pt-10">{JSON.stringify(salesData)}</p>
         </div>
-        <Table SalesPerHour={SalesPerHour} />
+        <Table salesData={salesData} />
       </main>
       <Footer />
     </div>
