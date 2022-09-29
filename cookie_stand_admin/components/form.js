@@ -1,27 +1,30 @@
 export default function Form({ eventHandler }) {
     return (
-        <form onSubmit={eventHandler} className="flex flex-col items-center p-5 text-xl font-semibold bg-limegreen justify-center w-4/6 mx-auto mt-8 rounded-md">
-            Create Cookie Stand
-            <div className="flex items-center w-full p-2">
-                <label>Location</label>
-                <input name="location" className="w-full m-4" />
+        <form onSubmit={eventHandler} className="flex flex-col items-center p-5 text-xl font-semibold bg-teal justify-center w-4/6 mx-auto mt-8 rounded-md border-2 border-limegreen">
+            <div className="flex flex-row items-center w-4/6">
+                <div className="flex flex-col items-center w-full p-2">
+                    <label>ADD LOCATION</label>
+                    <input type="text" placeholder="  Cookie Stand Location" text="grey" name="location" className="w-full m-4" />
+                </div>
+                <div className="flex flex-row">
+                    <button className="bg-darkgreen w-full hover:bg-black hover:text-white">
+                        CREATE STAND
+                    </button>
+                </div>
             </div>
             <div className="flex justify-between items-center w-full">
-                <div className="bg-teal rounded-md flex flex-col items-center font py-3 px-2 w-1/4">
-                    <label>Minimum Customers per Hour</label>
-                    <input name="minCustomers" className="w-full m-4" />
+                <div className="rounded-md flex flex-col items-center text=grey text-sm py-3 px-8 w-2/4">
+                    <label>MINIMUM CUSTOMERS PER HOUR</label>
+                    <input type="text" placeholder="  0" name="minCustomers" className="w-full m-4" />
                 </div>
-                <div className="bg-teal rounded-md flex flex-col items-center font py-3 px-2 w-1/4">
-                    <label>Maximum Customers per Hour</label>
-                    <input name="maxCustomers" className="w-full m-4" />
+                <div className="rounded-md flex flex-col items-center text=grey text-sm py-3 px-8 w-2/4">
+                    <label>MAXIMUM CUSTOMERS PER HOUR</label>
+                    <input type="text" placeholder="  0" name="maxCustomers" className="w-full m-4" />
                 </div>
-                <div className="bg-teal rounded-md flex flex-col items-center font py-3 px-2 w-1/4">
-                    <label>Average Cookies per Sale</label>
-                    <input name="avgCookies" className="w-full m-4" />
+                <div className="rounded-md flex flex-col items-center text=grey text-sm py-3 px-8 w-2/4">
+                    <label>AVERAGE COOKIES PER SALE</label>
+                    <input type="text" placeholder="  0" name="avgCookies" className="w-full m-4" />
                 </div>
-                <button className="bg-darkgreen px-20 py-10 hover:bg-black hover:text-white">
-                    Create
-                </button>
             </div>
         </form>
     )

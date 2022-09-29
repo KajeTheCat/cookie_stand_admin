@@ -22,7 +22,6 @@ export default function Home() {
       maxCustomers: max,
       avgCookies: avg,
       hourlySales: SalesPerHour(min,max,avg),
-      totalSales: totalSales(),
     };
     setsalesData([...salesData,data]);
   }
@@ -36,10 +35,6 @@ export default function Home() {
     return randomSales
   };
 
-  function totalSales() {
-
-  };
-
   return (
     <div>
       <Head>
@@ -49,12 +44,12 @@ export default function Home() {
       <main>
         <Form eventHandler={eventHandler} />
         <div className="flex flex-col items-center m-8 text-2xl">
-          <h1>No Cookie Stands Available</h1>
-          <p className="flex pt-10">{JSON.stringify(salesData)}</p>
+          {/* <h1>No Cookie Stands Available</h1> */}
+          {/* <p className="flex pt-10">{JSON.stringify(salesData)}</p> */}
         </div>
         <Table salesData={salesData} />
       </main>
-      <Footer />
+      <Footer salesData={salesData} />
     </div>
   );
 };
