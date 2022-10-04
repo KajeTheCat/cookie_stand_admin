@@ -1,7 +1,6 @@
 import { hours } from "../components/data.js"
 
 export default function Table({ salesData }) {
-    // console.log(salesData)
 
     function totalHourlySales(salesData) {
         const totalSalesArray = []
