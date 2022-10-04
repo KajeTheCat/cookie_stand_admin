@@ -1,14 +1,14 @@
-import Head from "next/head"
-import { useState } from 'react'
+import Head from "next/head";
+import { useState } from 'react';
 
-import Header from "../components/header.js"
-import Form from "../components/form.js"
-import Table from "../components/table.js"
-import Footer from "../components/footer.js"
+import Header from "../components/header.js";
+import Form from "../components/form.js";
+import Table from "../components/table.js";
+import Footer from "../components/footer.js";
 
 export default function Home() {
 
-  const [initState, StateFunction] = useState([]);
+  const [salesData, setsalesData] = useState([]);
 
   function eventHandler(event) {
     event.preventDefault();
@@ -21,16 +21,14 @@ export default function Home() {
       minCustomers: min,
       maxCustomers: max,
       avgCookies: avg,
-      hourlySales: SalesPerHour(min,max,avg),
+      hourlySales: SalesPerHour(min, max, avg),
     };
-    const stringJson = JSON.stringify(data);
-    StateFunction([...initState,stringJson]);
-    console.log(initState)
+    setsalesData([...salesData, data]);
   }
 
-  function SalesPerHour(min,max,avg) {
+  function SalesPerHour(min, max, avg) {
     let randomSales = []
-    for(let i = 0; i <= 13; i++){
+    for (let i = 0; i <= 13; i++) {
       let randomNumber = Math.floor((Math.random() * (max - min + 1) + min) * avg);
       randomSales.push(randomNumber);
     }
@@ -42,16 +40,12 @@ export default function Home() {
       <Head>
         <title>Cookie Stand Admin</title>
       </Head>
-      <Header/>
+      <Header />
       <main>
         <Form eventHandler={eventHandler} />
-        <div className="flex flex-col items-center m-8 text-2xl">
-          <h1>No Cookie Stands Available</h1>
-          <p className="flex pt-10">{initState}</p>
-        </div>
-        <Table SalesPerHour={SalesPerHour} />
+        <Table salesData={salesData} />
       </main>
-      <Footer />
+      <Footer salesData={salesData} />
     </div>
   );
 };
