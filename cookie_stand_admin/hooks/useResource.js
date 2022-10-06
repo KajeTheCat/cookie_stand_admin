@@ -30,7 +30,7 @@ export default function useResource() {
 
         try {
             await axios.post(apiUrl, info, config());
-            mutate();
+            mutate(); // mutate causes complete collection to be refetched
         } catch (err) {
             handleError(err);
         }
@@ -41,12 +41,19 @@ export default function useResource() {
         try {
             const url = apiUrl + id;
             await axios.delete(url, config());
-            mutate();
+            mutate(); // mutate causes complete collection to be refetched
         } catch (err) {
             handleError(err);
         }
     }
 
+    async function updateResource(resource) {
+        // STRETCH
+        // Add ability for user to update an existing resource
+    }
+
+
+    // helper function to handle getting Authorization headers EXACTLY right
     function config() {
 
         return {
@@ -58,6 +65,9 @@ export default function useResource() {
 
     function handleError(err) {
         console.error(err);
+        // currently just log out on error
+        // but a common error will be short lived token expiring
+        // STRETCH: refresh the access token when it has expired
         logout();
     }
 
@@ -70,3 +80,8 @@ export default function useResource() {
         updateResource,
     };
 }
+
+/* STRETCH
+This approach works, but it's not very snappy for the user.
+Check the SWR docs to see if you can "optomistically" render updated state while the API response is pending.
+*/

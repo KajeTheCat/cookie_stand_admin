@@ -2,6 +2,9 @@ import useResource from "../hooks/useResource";
 import { useAuth } from '../contexts/auth';
 
 export default function CookieStandForm({ handleSubmit }) {
+  
+    const { user } = useAuth();
+    const { resources, createResource } = useResource();
 
     function handleSubmit(event) {
       event.preventDefault();
@@ -28,8 +31,7 @@ export default function CookieStandForm({ handleSubmit }) {
       return randomSales
     };
 
-    const { user } = useAuth();
-    const { resources, createResource } = useResource();
+
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -41,53 +43,41 @@ export default function CookieStandForm({ handleSubmit }) {
             owner: user.id,
         };
         createResource(info);
-
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}className="flex flex-col items-center p-5 text-xl font-semibold bg-teal justify-center w-4/6 mx-auto mt-8 rounded-md border-2 border-limegreen">
             <fieldset>
-                <legend>Create Cookie Stand</legend>
-                <input placeholder='location' name='location' />
-                <input placeholder='minimum' name='minimum' />
-                <input placeholder='maximum' name='maximum' />
-                <input placeholder='average' name='average' />
-                <button>create</button>
+              <legend></legend>
+
+              <label name='location' className="text-xs w-full">ADD LOCATION
+              <input placeholder='location' name='location' className="w-full m-4" />
+              </label>
+
+
+              <button className="bg-darkgreen w-1/2 hover:bg-black hover:text-white rounded-md">CREATE STAND</button>
+
+              
+              <div className="flex flex-row">
+
+
+              <label name='minimum' className="text-xs w-full">MINIMUM CUSTOMERS PER HOUR
+              <input placeholder='0' name='minimum' className="w-full m-4"/>
+              </label>
+
+
+              <label name='maximum' className="text-xs w-full">MAXIMUM CUSTOMERS PER HOUR
+              <input placeholder='0' name='maximum' className="w-full m-4" />
+              </label>
+
+
+              <label name='average' className="text-xs w-full">AVERAGE COOKIES PER SALE
+              <input placeholder='0' name='average' className="w-full m-4" />
+              </label>
+
+
+              </div>
             </fieldset>
         </form>
     );
 }
-
-/////////////
-// export default function Form({ eventHandler }) {
-    
-//     return (
-//         <form onSubmit={eventHandler} className="flex flex-col items-center p-5 text-xl font-semibold bg-teal justify-center w-4/6 mx-auto mt-8 rounded-md border-2 border-limegreen">
-//             <div className="flex flex-row items-center w-4/6">
-//                 <div className="flex flex-col items-center w-full p-2">
-//                     <label>ADD LOCATION</label>
-//                     <input type="text" placeholder="  Cookie Stand Location" text="grey" name="location" className="w-full m-4" />
-//                 </div>
-//                 <div className="flex flex-row">
-//                     <button className="bg-darkgreen w-full hover:bg-black hover:text-white">
-//                         CREATE STAND
-//                     </button>
-//                 </div>
-//             </div>
-//             <div className="flex justify-between items-center w-full">
-//                 <div className="rounded-md flex flex-col items-center text=grey text-sm py-3 px-8 w-2/4">
-//                     <label>MINIMUM CUSTOMERS PER HOUR</label>
-//                     <input type="text" placeholder="  0" name="minCustomers" className="w-full m-4" />
-//                 </div>
-//                 <div className="rounded-md flex flex-col items-center text=grey text-sm py-3 px-8 w-2/4">
-//                     <label>MAXIMUM CUSTOMERS PER HOUR</label>
-//                     <input type="text" placeholder="  0" name="maxCustomers" className="w-full m-4" />
-//                 </div>
-//                 <div className="rounded-md flex flex-col items-center text=grey text-sm py-3 px-8 w-2/4">
-//                     <label>AVERAGE COOKIES PER SALE</label>
-//                     <input type="text" placeholder="  0" name="avgCookies" className="w-full m-4" />
-//                 </div>
-//             </div>
-//         </form>
-//     )
-// }
